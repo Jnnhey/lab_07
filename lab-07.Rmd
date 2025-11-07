@@ -25,6 +25,35 @@ evals<-read.csv("data/evals.csv", row.names=1)
 
 ```{r viz-score}
 # add code here
+evals %>%
+  ggplot(aes(
+    x = `score`)) +
+  geom_density()
+evals %>%
+  ggplot(aes(
+    x = `bty_avg`)) +
+  geom_density()
+
+# This distribution shows that the graph is not symmetrical. The most probable score is clearly around 4.5, which is rather high. It is not what I have imagined, as the bty_avg is a lot lower than the score avg, which shows that even tho most people have a low bty_avg it seems to have limited correlation with the score given.
+
+evals %>%
+  ggplot(aes(
+    x = `bty_avg`,
+    y = `score`)) +
+  geom_point() +
+  geom_smooth(method = lm) 
+```
+
+``` {r}
+evals %>%
+  ggplot(aes(
+    x = `bty_avg`,
+    y = `score`)) +
+  geom_jitter() +
+  geom_smooth(method = lm) 
+
+  
+  
 ```
 
 *Add your other details and narratives here.*
